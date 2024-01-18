@@ -37,21 +37,7 @@ contract TokenizePropertyCrossChainPriceNFT is ERC721, ERC721URIStorage {
 
     string public nftName;
     //https://docs.chain.link/ccip/supported-networks/testnet
-    // address public contractOwner;
-
-
-    //No esta funcionando
-    // modifier onlyOwner() {
-    //     require(msg.sender == contractOwner, "Solo el creador del contrato puede realizar esta operacion");
-    //     // emit OwnershipTransferred(address(0), contractOwner);
-    //     _;
-    // }
-
-    // event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-
     constructor(string memory _nftName, uint256 _maxTokenSupply) ERC721("TokenizeProperty CrossChain Price", "TPCCP") {
-
-        // contractOwner = msg.sender;
         nftName = _nftName;
         require(_maxTokenSupply > 0, "La cantidad maxima de NFTs debe ser mayor que cero");
         maxTokenSupply = _maxTokenSupply;
@@ -85,7 +71,6 @@ contract TokenizePropertyCrossChainPriceNFT is ERC721, ERC721URIStorage {
 
     function mint(address to) public {
         require(tokenIdCounter.current() < maxTokenSupply, "Se alcanzo la cantidad maxima de NFTs");
-        // require(msg.sender == contractOwner, "Solo el creador puede mintear");
         mintFrom(to, 0);
     }
 
