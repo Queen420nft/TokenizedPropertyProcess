@@ -12,7 +12,11 @@
 
 - Estoy haciendo pruebas con Markdown, para dejar un README bonito y funcional.
 - He vuelto a colgar los contratos, *hasta el momento MintOnSepolia funciona bien*
-- Intentar integrar la funcion de pagar los tokens en LA RED PRINCIPAL para emprezar.
+
+### NFTMinter
+
+- Trantando de integrar un nuevo contrato que se integre con el principal para hacer una tienda.
+- No funciona el NFTMinter(No m deja usar la funcion NFTMint), pero el TokenizePropertyCCNFT(Aqui si) si
 
 ## Tareas a Realizar
 

@@ -4,13 +4,13 @@ pragma solidity 0.8.19;
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 interface NFTMinterInterface {
-    function mint(address to) external;
+    function mintFrom(address to, uint256 amountNFT, uint256 sourceId) external payable;
 }
 
 contract NFTShop {
     AggregatorV3Interface internal priceFeed;
     NFTMinterInterface public nftMinter;
-    uint256 public nftPrice = 2; // 2.00 USD with 2 decimal places
+    uint256 public nftPrice = 200; // 2.00 USD with 2 decimal places
     address public owner;
 
     constructor(address _nftMinterAddress) {
@@ -35,24 +35,34 @@ contract NFTShop {
         return price;
     }
 
-    function calculateTokenAmount(uint256 amountETH) public view returns (uint256) {
-        // Sent amountETH, calculate how many NFTs can be minted
-        uint256 ethUsd = uint256(getChainlinkDataFeedLatestAnswer());
-        uint256 amountUSD = amountETH * ethUsd / 10**18;
-        uint256 amountNFT = amountUSD / nftPrice;
-        return amountNFT;
+    function calculateTotalCost(uint256 amountNFT) public view returns (uint256) {
+        return amountNFT * nftPrice;
     }
 
     // Receive function to mint NFTs when ETH is sent to the contract
-    receive() external payable {
-        uint256 amountNFT = calculateTokenAmount(msg.value);
-        for (uint256 i = 0; i < amountNFT; i++) {
-            nftMinter.mint(msg.sender);
-        }
+    // receive() external payable {
+    //     // Implementa la lógica necesaria, si es necesario, antes de llamar a mintFrom
+    //     uint256 amountNFT = calculateTokenAmount(msg.value);
+    //     nftMinter.mintFrom{value: msg.value}(msg.sender, amountNFT, getSourceId());
+    // }
+
+    function mintNFT(address to, uint256 amountNFT) external payable {
+        // Verificar que se haya enviado suficiente Ether
+        uint256 totalCost = calculateTotalCost(amountNFT);
+        require(msg.value >= totalCost, "Ether insuficiente enviado"); //<-El problema parece estar aqui
+
+        // Llamar a la función mintFrom del contrato NFTMinterInterface con la dirección del destinatario, la cantidad de NFTs y el sourceId
+        nftMinter.mintFrom{value: msg.value}(to, amountNFT, getSourceId());
+    }
+
+    // Implementa la lógica para obtener el sourceId adecuado según tus requisitos
+    function getSourceId() internal pure returns (uint256) {
+        // Puedes implementar la lógica para obtener el sourceId según tus requisitos
+        return 0; // Esto es un valor de ejemplo, ajusta según sea necesario
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Not the owner");
+        require(msg.sender == owner, "No es el propietario");
         _;
     }
 

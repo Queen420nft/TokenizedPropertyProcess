@@ -3,7 +3,7 @@
 ## Descripción del Proyecto
 Este proyecto consiste en un conjunto de contratos inteligentes que facilitan la creación y transferencia de tokens no fungibles (NFT) entre diferentes cadenas de bloques utilizando la red Fuji de Chainlink como oráculo para obtener información sobre las tasas de cambio de criptomonedas.
 
-## [Componentes del proyecto](componentes_del_proyecto.md)
+## [Componentes del proyecto](markdown/componentes.md)
 
 ## [Contratos Desplegados](markdown/contratos_desplegados.md)
 
