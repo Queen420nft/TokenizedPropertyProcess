@@ -5,6 +5,10 @@ Este proyecto consiste en un conjunto de contratos inteligentes que facilitan la
 
 ## Componentes del Proyecto
 
+[componentes_del_proyecto.md](componentes_del_proyecto.md)
+
+<!--- include: componentes_del_proyecto.md -->
+
 ### TokenizeProperty (Contrato NFT)
 
 #### Propósito
@@ -33,27 +37,34 @@ Este contrato facilita la compra de tokens NFT en la cadena de origen utilizando
 - Compra de tokens NFT utilizando ETH.
 - Minting gratuito para el creador del contrato en la cadena de origen.
 
-## Requisitos y Dependencias
-- El proyecto utiliza la red Fuji de Chainlink para obtener información de tasas de cambio.
-- Se deben desplegar los contratos en las cadenas correspondientes.
-- Se necesita una configuración adecuada de Chainlink y LinkToken para la red Fuji.
-
 ## Contratos de Prueba Desplegados
-
-### Contratos Desplegados en la Cadena de Destino (Fuji)
-
-1. **CrossDestinationMinterFiji**
-   - Dirección del Contrato: 
-   - Estado: Activo
-   - Propósito: Creación y gestión de tokens no fungibles que representan propiedades.
-
 
 ### Contrato Desplegado en la Cadena de Origen
 
-1. **CrossSourceMinter**
-   - Dirección del Contrato: 0x5c8C9b3f71C682b7f542E258f9db6F246da28236
+#### 1.   Prueba Con 3 Tokens
+   > *2 desplegados (1 Fuji, 1 Sepolia)*
+   **TokenizePropertyCrossChainPriceNFT**
+   - Dirección del Contrato[^1]: 
+   0x8cc05f15f4f0ede1e1f813e1cea1552007e07e4e
+   0x8Cc05f15f4f0ede1E1f813E1cEa1552007E07E4e
    - Estado: Activo
    - Propósito: Facilitar la compra de tokens NFT en la cadena de origen utilizando la red Fuji de Chainlink para obtener tasas de cambio actualizadas.
+
+   **CrossDestinationMinter**
+   - Dirección del Contrato[^1]: 
+   0x242eedf22c038534ad957686fbf410ef035913cc
+   0x242eEDF22C038534ad957686Fbf410Ef035913cC
+   - Estado: Activo
+   - Propósito: Facilitar la compra de tokens NFT en la cadena de origen utilizando la red Fuji de Chainlink para obtener tasas de cambio actualizadas.
+
+### Contratos Desplegados en la Cadena de Destino (Fuji)
+
+   1. **CrossSourceMinterFiji**
+   - Dirección del Contrato[^1]: 0xD0ec883575B638D742c51cf38B2b0A5666980375
+   - Estado: Activo
+   - Propósito: Creación y gestión de tokens no fungibles que representan propiedades.
+
+[^1]: Vinculado a los contratos con el mismo numero
 
 ## Tareas a Realizar
 
@@ -61,6 +72,26 @@ Este contrato facilita la compra de tokens NFT en la cadena de origen utilizando
 
 - Implementar una interfaz gráfica de usuario (GUI) para facilitar la interacción con los contratos desplegados.
 - Realizar pruebas exhaustivas de los contratos desplegados para garantizar su seguridad y funcionalidad.
+
+## Procceso
+
+### Commits
+
+#### TryingCleanTPCCPNFT y anterior
+
+- En el primer commit he creado unos contratos basicos para ir probando funcionalidades y poco a poco ir escalando el proyecto.
+- En el segundo commit he eliminado los commits inecesarios en TryingCleanTPCCPNFT y he comprobado que he entendido correctamente el uso del github basico en Remix.
+- Nota: *Cuando copiamos un contrato directamente de la parte de despliege de remix, este aparece distinto (ver en Contratos desplegados)*
+
+#### TryingMarkdown&Github
+
+- Estoy haciendo pruebas con Markdown, para dejar un README bonito y funcional.
+- He vuelto a colgar los contratos, *hasta el momento MintOnSepolia funciona bien*
+- Intentar integrar la funcion de pagar los tokens en LA RED PRINCIPAL para emprezar.
+
+
+### Tareas finalizadas
+
 
 ## Información para Aprender
 
@@ -85,3 +116,4 @@ Este contrato facilita la compra de tokens NFT en la cadena de origen utilizando
 
 ## Contribuciones y Problemas
 Si encuentras problemas o deseas contribuir al proyecto, por favor, crea un issue en el repositorio.
+
